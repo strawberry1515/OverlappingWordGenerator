@@ -59,9 +59,12 @@
 
 <body>
     <div id="app">
-        <input type="text" v-model="word">
+        <label for="inputArea">Enter something: </label><input id="inputArea" v-model="word">
         <p></p>
-        <input type="number" min="0" max="2" v-model="overlapNum">
+        <label for="deep">Overlapping column number: </label><input type="number" id="deep" min="0" max="2"
+            v-model="overlapNum">
+        <hr>
+        <span v-for="oneLetter in allLetters">[{{oneLetter}}]</span>
         <hr>
         <div class="gridBox">
             <div class="letter" v-for="oneLetter in allLetters">
@@ -191,8 +194,8 @@
         computed: {
             allLetters() {
                 let array = []
-                for (let i = 0; i < 26; i++) {
-                    let char = String.fromCharCode(97 + i)
+                for (let i = 0; i < Object.keys(this.letterLight).length; i++) {
+                    let char = Object.keys(this.letterLight)[i]
                     array.push(char)
                     this.showLetter(char)
                 }
